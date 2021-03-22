@@ -37,7 +37,7 @@ const Card = (article) => {
   author.classList.add('author')
   imgContainer.classList.add('img-container')
 
-  console.log("Card function article print:  ", article)
+  //console.log("Card function article print:  ", article)
   headline.textContent = article.headline
   img.src = article.authorPhoto
   authorName.textContent = article.authorName
@@ -50,8 +50,8 @@ const Card = (article) => {
   return card
 }
 
-const cards = document.querySelector('.cards-container')
-const cardAppender = () => {
+
+const cardAppender = (selector) => {
   // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.
@@ -60,13 +60,14 @@ const cardAppender = () => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+  const cards = document.querySelector(selector)
   axios.get(`https://lambda-times-api.herokuapp.com/articles`).then(res => {
     const articleObject = res.data.articles;
-    console.log('article object: ',articleObject)
+    //console.log('article object: ',articleObject)
     for (var objectProperty in articleObject){
-      console.log('object property:   ',articleObject[objectProperty])
+      //console.log('object property:   ',articleObject[objectProperty])
       for(var insideObjectProperty in articleObject[objectProperty]) {
-        console.log('inside the object property:  ',articleObject[objectProperty][insideObjectProperty])
+        //console.log('inside the object property:  ',articleObject[objectProperty][insideObjectProperty])
         const articleCard = Card(articleObject[objectProperty][insideObjectProperty])
         cards.append(articleCard)
       }
